@@ -117,5 +117,5 @@ isPalindrome (x:xs) = (x == (last xs)) && (isPalindrome (init xs))
 
 
 
-sortByLength = sortBLqy (\ x y -> compare (length x) (length y))
+sortByLength = sortBy (\ x y -> compare (length x) (length y))
 
