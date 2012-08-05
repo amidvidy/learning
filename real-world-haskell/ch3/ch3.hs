@@ -65,10 +65,6 @@ toList :: List a -> [a]
 toList (Cons x xs) = x : toList xs
 toList Nil         = []
 
-data Tree a = Node a (Tree a) (Tree a)
-            | Empty
-              deriving (Show)
-
 data MTree a = MNode a (Maybe (MTree a)) (Maybe (MTree a))
 
 safeSecond :: [a] -> Maybe a
@@ -118,4 +114,27 @@ isPalindrome (x:xs) = (x == (last xs)) && (isPalindrome (init xs))
 
 
 sortByLength = sortBy (\ x y -> compare (length x) (length y))
+
+intersperse' :: Char -> [String] -> String
+intersperse' _ [] = []
+intersperse' _ (x:[]) = x
+intersperse' sep (x:xs) = (x ++ [sep]) ++ (intersperse' sep xs)
+
+data Tree a = Node a (Tree a) (Tree a)
+            | Empty
+              deriving (Show)
+
+height :: Tree a -> Integer
+height Empty = 0
+height (Node a left right) = max (1 + (height left)) (1 + (height right))
+
+data Direction = Straight | Left | Right
+                 deriving (Eq, Show)
+
+type Vector = (Double, Double)
+
+-- getDirection :: Vector -> Vector -> Vector -> Direction
+
+
+
 
