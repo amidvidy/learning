@@ -1,4 +1,5 @@
 import Data.List
+import Prelude hiding (Right, Left)
 
 data BookInfo = Book Int String [String]
                 deriving (Show)
@@ -133,8 +134,16 @@ data Direction = Straight | Left | Right
 
 type Vector = (Double, Double)
 
--- getDirection :: Vector -> Vector -> Vector -> Direction
+getDirection :: Vector -> Vector -> Vector -> Direction
+getDirection (x1, y1) (x2, y2) (x3, y3)
+             | crossprod > 0 = Left
+             | crossprod < 0 = Right
+             | otherwise     = Straight
+             where crossprod = (x2 - x1) * (y3 - y1) - (y2 - y1) * (x3 - x1)
 
+getDirections :: [Vector] -> [Direction]
+getDirections (x:y:z:xs) = getDirection x y z : getDirections (y:z:xs)
+getDirections _ = []
 
-
+sortByY = sortBy (\ x y -> compare (snd x) (snd y))
 
