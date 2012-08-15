@@ -32,3 +32,8 @@ myInit :: [a] -> [a]
 myInit [x] = []
 myInit (x:xs) = x : myInit xs
 
+-- same as '(++)'
+myAppend :: [a] -> [a] -> [a]
+myAppend [] b = b
+myAppend a [] = a
+myAppend a b = myAppend (myInit a) ((myLast a) : b)
