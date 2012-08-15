@@ -48,3 +48,12 @@ myReverse :: [a] -> [a]
 myReverse [x] = [x]
 myReverse (x:xs) = myAppend (myReverse xs) [x]
 myReverse _ = []
+
+-- same as 'and'
+myAnd :: [Bool] -> Bool
+myAnd [] = True
+myAnd [x] = x
+myAnd (x:xs) = x && myAnd xs
+
+myAnd' :: [Bool] -> Bool
+myAnd' = foldl (&&) True
