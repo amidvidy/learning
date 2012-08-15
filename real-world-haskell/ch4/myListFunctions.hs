@@ -59,3 +59,7 @@ myAnd (x:xs) = x && myAnd xs
 myAnd' :: [Bool] -> Bool
 myAnd' = foldl (&&) True
 
+-- same as 'or'
+myOr :: [Bool] -> Bool
+myOr = foldl (||) False
+
