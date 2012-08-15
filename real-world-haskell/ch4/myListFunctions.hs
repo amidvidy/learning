@@ -63,3 +63,10 @@ myAnd' = foldl (&&) True
 myOr :: [Bool] -> Bool
 myOr = foldl (||) False
 
+-- same as 'all'
+myAll :: (a -> Bool) -> [a] -> Bool
+myAll pred = myAnd . map pred
+
+-- same as 'any'
+myAny :: (a -> Bool) -> [a] -> Bool
+myAny pred = myOr . map pred
