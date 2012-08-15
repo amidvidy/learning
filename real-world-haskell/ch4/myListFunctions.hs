@@ -37,3 +37,8 @@ myAppend :: [a] -> [a] -> [a]
 myAppend [] b = b
 myAppend a [] = a
 myAppend a b = myAppend (myInit a) ((myLast a) : b)
+
+-- same as 'concat'
+myConcat :: [[a]] -> [a]
+myConcat (x:xs) = myAppend x $ myConcat xs
+myConcat _ = []
