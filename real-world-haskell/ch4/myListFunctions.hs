@@ -13,24 +13,43 @@ myHead :: [a] -> a
 myHead (x:xs) = x
 myHead _ = error "myHead takes a non-empty list"
 
-mySafeHead :: [a] -> Maybe a
-mySafeHead (x:xs) = Just x
-mySafeHead _ = Nothing
+safeHead :: [a] -> Maybe a
+safeHead (x:xs) = Just x
+safeHead _ = Nothing
 
 -- same as 'tail'
 myTail :: [a] -> [a]
 myTail (x:xs) = xs
 myTail _ = error "myTail takes a non-empty list"
 
+safeTail :: [a] -> Maybe [a]
+safeTail (x:xs) = Just xs
+safeTail _ = Nothing
+
 -- same as 'last'
 myLast :: [a] -> a
 myLast [x] = x
 myLast (x:xs) = myLast xs
 
+safeLast :: [a] -> Maybe a
+safeLast [x] = Just x
+safeLast (x:xs) = safeLast xs
+safeLast _ = Nothing
+
 -- same as 'init'
 myInit :: [a] -> [a]
 myInit [x] = []
 myInit (x:xs) = x : myInit xs
+
+safeInit :: [a] -> Maybe [a]
+safeInit [x] = Just []
+safeInit (x:xs) = case (safeInit xs) of
+                    Nothing -> Nothing
+                    Just a -> Just (x : a)
+
+
+
+safeInit _ = Nothing
 
 -- same as '(++)'
 myAppend :: [a] -> [a] -> [a]
@@ -70,3 +89,6 @@ myAll pred = myAnd . map pred
 -- same as 'any'
 myAny :: (a -> Bool) -> [a] -> Bool
 myAny pred = myOr . map pred
+
+
+
