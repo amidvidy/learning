@@ -42,3 +42,9 @@ myAppend a b = myAppend (myInit a) ((myLast a) : b)
 myConcat :: [[a]] -> [a]
 myConcat (x:xs) = myAppend x $ myConcat xs
 myConcat _ = []
+
+-- same as 'reverse'
+myReverse :: [a] -> [a]
+myReverse [x] = [x]
+myReverse (x:xs) = myAppend (myReverse xs) [x]
+myReverse _ = []
