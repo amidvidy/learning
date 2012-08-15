@@ -55,5 +55,7 @@ myAnd [] = True
 myAnd [x] = x
 myAnd (x:xs) = x && myAnd xs
 
+-- pointless...
 myAnd' :: [Bool] -> Bool
 myAnd' = foldl (&&) True
+
