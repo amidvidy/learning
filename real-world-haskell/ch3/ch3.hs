@@ -147,3 +147,6 @@ getDirections _ = []
 
 sortByY = sortBy (\ x y -> compare (snd x) (snd y))
 
+
+-- convexHull :: [Vector] -> [Vector]
+-- will come back to this later

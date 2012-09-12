@@ -49,6 +49,7 @@ safeInit (x:xs) = case (safeInit xs) of
 
 
 
+
 safeInit _ = Nothing
 
 -- same as '(++)'
@@ -90,5 +91,8 @@ myAll pred = myAnd . map pred
 myAny :: (a -> Bool) -> [a] -> Bool
 myAny pred = myOr . map pred
 
-
+splitWith :: (a -> Bool) -> [a] -> [[a]]
+splitWith _ [] = []
+-- why doesn't this work?
+splitWith pred lst = takeWhile pred lst : splitWith pred (dropWhile pred lst)
 
